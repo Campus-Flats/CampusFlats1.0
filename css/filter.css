@@ -1,0 +1,9 @@
+.test{
+    width:40%;
+}
+.holder{
+    border:1px solid gray;
+    padding:6px;
+    border-radius:6px;
+    margin-right:6px;
+}

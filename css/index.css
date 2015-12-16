@@ -1,0 +1,26 @@
+#frame{
+    border:none;
+    width:800px;
+    height:400px;
+}
+img {
+max-width: 100%;
+}
+#frame{
+  max-width:100%;
+  border:none;
+  
+}
+
+
+
+
+#menu{
+    margin-left:3%;
+}
+
+#white-inside
+{
+    background-color:white;
+}
+ 

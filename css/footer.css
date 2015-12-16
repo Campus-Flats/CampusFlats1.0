@@ -1,0 +1,46 @@
+body{
+  background-color:#1D1F1F;
+}
+
+
+.container {
+  width:100%;
+  clear:both;
+}
+#contact {
+ 
+  color:white;
+  width:25%;
+  float:left;
+}
+#follow-us{
+  
+  color:white;
+  width:25%;
+  float:left;
+}
+#mailing-list{
+ 
+color:white;
+  width:20%;
+  float:left;
+}
+
+
+
+#blue
+{
+  color:#0a9e95
+    
+}
+.go{
+  background: #1abc9c;
+  border:none;
+  cursor: pointer;
+ 
+}
+.subscribe{
+  width:70%;
+ border:none;
+  border:1px solid white;
+}
