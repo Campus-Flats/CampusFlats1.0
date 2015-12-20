@@ -1,72 +1,219 @@
 
 <!DOCTYPE html>
+
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title></title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-         
 
-      
-         
-    </head>
-    <body>
-       <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Brand</a>
-    </div>
+<head>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-         <script src="../../js/jquery.js"></script>
-         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-         
-       </body>
+<title>Expanding Search Input Field</title>
+
+<link rel="Stylesheet" href="styles.css">
+
+<meta charset="utf-8">
+
+</head>
+
+<body>
+
+ 
+
+<div id="wrapper">
+
+<h2>Full Width Expanding</h2>
+
+<form id="search-form" name="search-form" method="get" action="index.html">
+
+<input id="s" type="text" name="s" placeholder="Search…">
+
+<input id="search-button-1" type="submit" name="search-button-1">
+
+</form>
+
+ 
+
+<h2>Fixed Width Expanding</h2>
+
+<form id="search-form-2" name="search-form-2" method="get" action="index.html">
+
+<input id="s2" type="text" name="s2" placeholder="Search…">
+
+<input id="search-button-2" type="submit" name="search-button-2">
+
+</form>
+
+ 
+
+</div>
+
+ 
+<style>
+
+body {
+
+background: #FFFFFF;
+
+color: #252525;
+
+font-family: Helvetica, Arial, sans-serif;
+
+font-weight: bold;
+
+font-size: 18px;
+
+}
+
+ 
+
+ 
+
+#wrapper {
+
+width: 700px;
+
+margin: 35px auto;
+
+padding: 10px;
+
+background: white;
+
+border-radius: 10px;
+
+border: 1px solid #252525;
+
+}
+
+ 
+
+p { color: #777; margin-bottom: 20px; }
+
+ 
+
+
+
+ 
+
+/** Search Forms and Container **/
+
+#search-form-1, #search-form-2 {
+
+display: block;
+
+margin-bottom: 10px;
+
+}
+
+ 
+
+.container { position: relative; }
+
+ 
+
+ 
+
+/** Search Fields **/
+
+.search-field-1, .search-field-2 {
+
+display: block;
+
+width: 250px;
+
+padding: 10px 10px;
+
+padding-right: 30px; /* Keeps input text from running over the search button */
+
+background-color: #fff;
+
+font-size: 12px;
+
+color: #ccc;
+
+border: 4px solid #f4f4f4;
+
+ 
+
+/* CSS3 Box Sizing */
+
+-webkit-box-sizing: border-box;
+
+-moz-box-sizing: border-box;
+
+-ms-box-sizing: border-box;
+
+box-sizing: border-box;
+
+ 
+
+/* CSS3 Rounded Corners */
+
+border-radius: 10px;
+
+ 
+
+/* CSS3 Transition (Expanding Effect) */
+
+-webkit-transition: all 0.4s linear;
+
+-moz-transition: all 0.4s linear;
+
+-o-transition: all 0.4s linear;
+
+-ms-transition: all 0.4s linear;
+
+transition: all 0.4s linear;
+
+}
+
+
+ 
+
+/** Search Field 1 Focus (Full Width) **/
+
+.search-field-1:focus {
+
+outline: none;
+
+width: 100%; // full width ALWAYS has to be 100%
+
+color: #252525;
+
+/* CSS3 Outer Shadow */
+
+-webkit-box-shadow: 0 0 0 10px #999;
+
+-moz-box-shadow: 0 0 0 10px #999;
+
+box-shadow: 0 0 10px #999;
+
+}
+
+ 
+
+/** Search Field 2 Focus (Fixed Width) **/
+
+.search-field-2:focus {
+
+outline: none;
+
+width: 300px; // change this to adjust the size you want your fixed width to be
+
+color: #252525;
+
+ 
+
+/* CSS3 Outer Shadow */
+
+-webkit-box-shadow: 0 0 0 10px #000;
+
+-moz-box-shadow: 0 0 0 10px #000;
+
+box-shadow: 0 0 10px #000;
+
+}
+</style>
+
+
+</body>
+
 </html>
+

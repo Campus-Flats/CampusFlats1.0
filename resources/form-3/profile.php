@@ -124,6 +124,47 @@ $servername = "localhost";
 
         
      <!--END OF DELETE MODAL-->
+
+     <!--UPDATE MODAL-->
+          <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <span class="titled"><center><h4 class="modal-title" id="myModalLabel">Update Entry</h4></center></span>
+                </div>
+                <div class="modal-body">
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">$ Price</span>
+                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     </div>
+
+
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">876</span>
+                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     </div>
+
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">@</span>
+                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     </div>
+
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">@</span>
+                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     </div>
+
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">@</span>
+                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     </div>
+
+
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-info del left" data-dismiss="modal"><i class="glyphicon glyphicon-pencil"></i> Update</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+                </div>
+              </div>
+            </div>
+        </div>
+     <!--END OF UPDATE MODAL-->
  
      
         <div>
@@ -707,7 +748,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       </div>\
       <div class=container">\
        <button class="test delete btn btn-danger" data-toggle="modal" data-target="#deleteModal" name='+response[6][x]+'><i class="glyphicon glyphicon-trash "> Delete</i></button>\
-       <button class="test update btn btn-info" name='+response[6][x]+'><i class="glyphicon glyphicon-pencil "> Update</i></button>\
+       <button class="test update btn btn-info" data-toggle="modal" data-target="#updateModal" name='+response[6][x]+'><i class="glyphicon glyphicon-pencil "> Update</i></button>\
       </div>\
     </div>\
   </div>\

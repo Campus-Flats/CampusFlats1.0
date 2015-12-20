@@ -28,7 +28,7 @@ $servername = "localhost";
   if($bool=='false')
   {
      
-          if($db->query($delete_from_info)==TRUE &&$db->query($delete_image)==TRUE)
+          if($db->query($delete_from_info)==TRUE && $db->query($delete_image)==TRUE)
           {
               echo ("entry deleted");
           }

@@ -330,7 +330,7 @@ $(document).ready(function(){
     setTimeout(function(){
     addMarker(coordsLat,coordsLong,price,accomodation);
     setAllMap(map);
-      console.log(price);
+     
     },1000)
 });
   // Adds a marker at the center of the map.
@@ -351,7 +351,7 @@ function addMarker(coordsLat,coordsLong,price,accomodation) {
     var marker = new google.maps.Marker({
     position: location,
     map: map,
-    infowindow:new google.maps.InfoWindow({content:"<div>"+price[i]+"</div>"+accomodation[i]})
+    infowindow:new google.maps.InfoWindow({content:"<div> Price: "+price[i]+"</div>"+"Accomodation: "+accomodation[i]})
    
       
   });
@@ -371,6 +371,7 @@ $(document).ready(function(){
        url:"getcoords.php",
        type:'POST',
        success:function(response){
+        console.log(response[0]);
            coordsLat=response[0];
            coordsLong=response[1];
            price=response[2];
@@ -410,6 +411,3 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
 </html>
-<?php
-echo $_GET['bottomrange'];
-?>

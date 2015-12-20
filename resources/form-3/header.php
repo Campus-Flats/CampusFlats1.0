@@ -19,7 +19,7 @@
        
      
    <body>
-   	<div class="header">
+   	<div class="header container">
     <nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -79,6 +79,7 @@
 	width: 123px;
 	background: url(../images/logo.png) left center no-repeat;
 	text-indent: -99999px;
+	margin-top: 10px;
 }
 @media (max-width: 767px) {	.navbar-brand { height: 60px; margin-left: 15px; }}
 @media (max-width: 767px) {
