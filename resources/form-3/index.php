@@ -80,7 +80,7 @@ $servername = "localhost";
     </head>
     <body>
       
-    <div class="content" id="map-canvas"></div>
+    <div class="content" id="map-canvas"> <center>If the map does not load check your internet connection and reload the page!</center></div>
     <div class="container">
               <div class="alert alert-warning" role="alert" id="error"><h3>Ooops! some data is missing!</h3> </div>
     </div>
