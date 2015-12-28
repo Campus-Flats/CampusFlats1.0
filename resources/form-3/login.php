@@ -2,6 +2,7 @@
    session_start();
   
 class Login{
+ 
     public $username,$password;
 
  public function flatten($data) {
@@ -13,14 +14,14 @@ class Login{
  
     public function login()
     {
-        $servername = "localhost";
-         $name = "root";
-         $dbpassword = "620070733";
+        $servername = "127.0.0.1";
+         $name = "jermyhewitt";
+         $dbpassword = "";
          $database = "Users";
          $dbport = 3306;
         
         // Create connection
-       $db = new mysqli($servername, $name, $dbpassword, $database);
+       $db = new mysqli($servername, $name, $dbpassword, $database,$dbport);
 
     
 
@@ -38,7 +39,8 @@ class Login{
        $num_rows=mysqli_num_rows($query);
        if($num_rows<1)
        {
-           echo -1;
+           header('Content-Type: application/json');
+           echo json_encode(-1);
        }
        else{
     

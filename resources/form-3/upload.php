@@ -2,14 +2,14 @@
   session_start();
 
 
-         $servername = "localhost";
-         $name = "root";
-         $dbpassword = "620070733";
+         $servername = '127.0.0.1';
+         $name = "jermyhewitt";
+         $dbpassword = "";
          $database = "Users";
          $dbport = 3306;
         
         // Create connection
-       $db = new mysqli($servername, $name, $dbpassword, $database);
+       $db = new mysqli($servername,$name, $dbpassword, $database,$dbport);
 
     
 
@@ -29,7 +29,7 @@
       $flatsql = "INSERT INTO `flatinfo`(`location`, `price`, `single_shared`, `sep_all`, `id`, `telephone`, `uniqueid`) VALUES ('$location', '$price', '$single_shared', '$sep_all', '$id', '$telephone','$uniqueid');";
         # $flatsql = "INSERT INTO `Users`.`flatinfo` (`location`, `price`, `single_shared`, `sep_all`, `ID`,`telephone`,`uniqueid`) VALUES ('$location', '$price', '$single_shared', '$sep_all', '$id','$telephone','$uniqueid';";
         if($db->query($sql)===TRUE && $db->query($flatsql)===TRUE ){
-          echo $location;
+          echo "uploaded";
           
         }
         else{

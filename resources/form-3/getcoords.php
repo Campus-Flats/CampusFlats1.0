@@ -1,12 +1,12 @@
 <?php
-$servername = "localhost";
-         $name = "root";
-         $dbpassword = "620070733";
+$servername = '127.0.0.1';
+         $name = "jermyhewitt";
+         $dbpassword = "";
          $database = "Users";
          $dbport = 3306;
         
         // Create connection
-       $db = new mysqli($servername, $name, $dbpassword, $database, $dbport);
+       $db = new mysqli($servername,$name, $dbpassword, $database,$dbport);
 
     
 

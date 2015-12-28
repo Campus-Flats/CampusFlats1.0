@@ -6,14 +6,14 @@ if(isset($_SESSION['firstname'])===FALSE&&isset($_SESSION['lastname'])===FALSE )
 {
  header('location:login.html');;
 }
-$servername = "localhost";
-         $name = "root";
-         $dbpassword = "620070733";
+$servername = '127.0.0.1';
+         $name = "jermyhewitt";
+         $dbpassword = "";
          $database = "Users";
          $dbport = 3306;
         
         // Create connection
-       $db = new mysqli($servername, $name, $dbpassword, $database, $dbport);
+       $db = new mysqli($servername,$name, $dbpassword, $database,$dbport);
 
     
 
@@ -75,7 +75,7 @@ $servername = "localhost";
     </head>
     <body>
      <div class="container-fluid">
-     
+     <div class="se-pre-con loader"></div>
      <!--MODAL-->
     <div id="openModal" class="modalDialog">
 	<div>
@@ -576,10 +576,23 @@ display:none;
         padding: 0px;
       }
 
+.se-pre-con {
+
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../images/loader-64x/Preloader_2.gif) center no-repeat #fff;
+}
+
+
 </style>
          <script type="text/javascript"  src="assets/js/jquery.backstretch.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script>
+    $(".se-pre-con").hide();
     
 var map;
 var markers = [];
@@ -632,7 +645,12 @@ clearMarkers();
 
   
 }
+$('.pad').on('click',function(){
+ 
+ $(".modalDialog").show();
+})
 $("#coords").on('click',function(){
+
  if($('#mprice').val()=="")
 {
  $(".alert-info").removeClass("alert-info")
@@ -825,6 +843,7 @@ $('.upload').liteUploader({
  }); 
  
 $("form.upload").on('submit',function(){
+ $(".se-pre-con").show();
  console.log($('.upload').val());
  ///$(".spinner-loader").delay(5000).fadeOut('slow');
  var validator=true;
@@ -881,7 +900,7 @@ data['sep-all']=sep_all;
 		data:data,
 		success: function(response){
       console.log(response);
-		
+		 
 		 
   	$('#warning').hide();
 		 $(".container").fadeOut(5500);
@@ -893,9 +912,10 @@ data['sep-all']=sep_all;
       $(".progress-bar").animate({
     width: "0%"
 }, 4000);
-document.getElementById("save").reset();
 
-		
+document.getElementById("save").reset();
+setTimeout(function(){$(".se-pre-con").hide();},5600)
+		 
 	/*	$('form.upload').trigger("reset");*/
 	 
 		}

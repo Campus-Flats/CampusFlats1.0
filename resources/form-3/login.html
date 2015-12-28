@@ -180,6 +180,11 @@
 	   
 	 		
 		}
+			,
+		error:function(XMLHttpRequest, textStatus, errorThrown)
+		{
+			console.log("there was an error"+XMLHttpRequest+" "+textStatus+" "+errorThrown);
+		}
 	});
 	return false;
 });
