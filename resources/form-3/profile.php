@@ -134,31 +134,38 @@ $servername = '127.0.0.1';
                  <span class="titled"><center><h4 class="modal-title" id="myModalLabel">Update Entry</h4></center></span>
                 </div>
                 <div class="modal-body">
-                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">$ Price</span>
-                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">Price</span>
+                     <input type="text" class="form-control up-price" placeholder="Price" aria-describedby="sizing-addon2">
                      </div>
 
+                      <br>
 
-                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">876</span>
-                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">Location</span>
+                     <input type="text" class="form-control up-location" placeholder="Location" aria-describedby="sizing-addon2">
                      </div>
+                     
+                     <br>
 
-                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">@</span>
-                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">Telephone</span>
+                     <input type="text" class="form-control up-telephone" placeholder="Telephone" aria-describedby="sizing-addon2">
                      </div>
+                     
+                     <br>
 
-                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">@</span>
-                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">Accomodation</span>
+                     <input type="text" class="form-control up-accomodation" placeholder="Accomodation" aria-describedby="sizing-addon2">
                      </div>
+                     
+                     <br>
 
-                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">@</span>
-                     <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                     <div class="input-group"><span class="input-group-addon" id="sizing-addon2">Rent Type</span>
+                     <input type="text" class="form-control up-rent" placeholder="Rent Type" aria-describedby="sizing-addon2">
                      </div>
 
 
                 </div>
                 <div class="modal-footer">
-                   <button type="button" class="btn btn-info del left" data-dismiss="modal"><i class="glyphicon glyphicon-pencil"></i> Update</button>
+                   <button type="button" class="btn btn-info up left" data-dismiss="modal"><i class="glyphicon glyphicon-pencil"></i> Update</button>
                     <button type="button" class="btn btn-success" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
                 </div>
               </div>
@@ -758,11 +765,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div class="thumbnail">\
       <img src="../../uploads/'+response[5][x]+'"'+' alt="image unavailable">\
       <div class="caption">\
-         <p><h3><span class="title">Price:</span> <span class="price">$' +response[0][x]+'</h3></span></p>\
-         <p><span class="titled">Location: ' +response[1][x]+'</span></p>\
-         <p><span class="titled">Telephone: ' +response[2][x]+'</span></p>\
-         <p><span class="titled">Accomodation: ' +response[3][x]+'</span></p>\
-         <p><span class="titled">Rent type: ' +response[4][x]+'</span></p>\
+         <p><h3><span class="title">Price:</span> <span  id="price-'+response[6][x]+'" class="price">$' +response[0][x]+'</h3></span></p>\
+         <p><span class="titled">Location:</span> <span class="titled" id="location-'+response[6][x]+'">'+response[1][x]+'</span></p>\
+          <p><span class="titled">Telephone:</span> <span class="titled" id="telephone-'+response[6][x]+'">'+response[2][x]+'</span></p>\
+          <p><span class="titled">Accomodation:</span> <span class="titled" id="accomodation-'+response[6][x]+'">'+response[3][x]+'</span></p>\
+          <p><span class="titled">Rent-Type:</span> <span class="titled" id="rent-'+response[6][x]+'">'+response[4][x]+'</span></p>\
       </div>\
       <div class=container">\
        <button class="test delete btn btn-danger" data-toggle="modal" data-target="#deleteModal" name='+response[6][x]+'><i class="glyphicon glyphicon-trash "> Delete</i></button>\
@@ -772,13 +779,18 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </div>\
 \
   ';
+  
+   /*update button actions are done here*/
+      
+     
+      
       
       
       $('.inner').html(container+put+endDiv);
       }
       
       
-       $('.test').on('click',function(){
+       $('.delete').on('click',function(){
         var thisButton=$(this);
         var unique=thisButton.attr("name");
         var bool=thisButton.hasClass('update')
@@ -802,6 +814,53 @@ google.maps.event.addDomListener(window, 'load', initialize);
        
       
        });
+       
+       
+        $(".update").on('click',function(){
+        var thisButton=$(this);
+        var unique=thisButton.attr("name");
+        var locationID="location-"+unique,
+        priceID="price-"+unique,
+        telephoneID="telephone-"+unique,
+        accomodationID="accomodation-"+unique,
+        rentID="rent-"+unique;
+        
+        
+        var location=document.getElementById(locationID).innerHTML,
+        telephone=document.getElementById(telephoneID).innerHTML,
+        accomodation=document.getElementById(accomodationID).innerHTML,
+        rent=document.getElementById(rentID).innerHTML,
+        price=document.getElementById(priceID).innerHTML;
+        
+      
+        console.log(price,location,telephone,accomodation,rent);
+       
+        
+        
+       var updateData={};
+        $('.up').on('click',function(){
+         $.ajax({
+          url:'update.php',
+          type:'POST',
+          data:updateData,
+          success:function(response)
+          {
+           console.log(response);
+          },
+          error:function(jqxhr,textStatus,errorThrown){
+           
+          }
+          
+         })
+         
+        });
+      
+       
+       
+       
+      });
+      
+       
        
  
       }
