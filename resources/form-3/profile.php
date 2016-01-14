@@ -334,7 +334,7 @@ $servername = '127.0.0.1';
   
     <div class="col-lg-12 col-sm-6 jumbotron"><center>
         
-     <h1>Show us where you are Located</h1>
+     <h2>Show us where the home you are renting is located</h2>
      <h3>(optional)</h3>
     
     <br>

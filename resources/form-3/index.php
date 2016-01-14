@@ -23,8 +23,8 @@ $servername = '127.0.0.1';
         die("Connection failed: " . $db->connect_error);
         
          } 
-         $x=rand(0,3);
-         $y=rand(5,10);
+         $x=rand(0,6);
+         $y=rand(8,15);
          
        #$sql = "SELECT location,price,single_shared,telephone,uniqueid FROM `flatinfo`";
        $sql = "SELECT location,price,single_shared,telephone,uniqueid FROM `flatinfo` LIMIT $x,$y";
@@ -57,6 +57,8 @@ $servername = '127.0.0.1';
              
         
        }
+       
+      
   
        
        
@@ -74,13 +76,13 @@ $servername = '127.0.0.1';
         <link  rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat' >
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css"/>
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css"/>
-        <script src="../../js/jquery.js"></script>
+      
        
         <title></title>
          
     </head>
     <body>
-      
+     
     <div class="content" id="map-canvas"> <center>If the map does not load check your internet connection and reload the page!</center></div>
     <div class="container">
               <div class="alert alert-warning" role="alert" id="error"><h3>Ooops! some data is missing!</h3> </div>
@@ -249,7 +251,48 @@ $servername = '127.0.0.1';
    
   
     <style type="text/css">
-    .alert{
+/*marker customization*/
+.gm-style-iw + div {display: none;}
+.gm-style-iw {
+   width: 250px !important;
+   top: 15px !important; 
+   left: 0 !important;
+   background-color: #fff;
+   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+   border: 1px solid rgba(72, 181, 233, 0.6);
+   border-radius: 2px 2px 0 0;
+}
+/*marker customization*/
+
+.heart{
+    position:absolute;
+    font-size:3.7em;
+    opacity:0.8;
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+    cursor: pointer;
+    cursor: hand;
+    
+}
+.heart:hover{
+    color: #1e1e15;
+}
+
+.info-price{
+   
+    color:#33CCFF;
+    font-size:25px;
+    padding:4px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.info-image{
+   
+    width:250px;
+    height:200px;
+}
+
+
+.alert{
         display:none;
     }
  .thumbnail>img{
@@ -310,31 +353,34 @@ $servername = '127.0.0.1';
     
     
    
-    <script type="text/javascript">
-   
-   $("form.submitter").on('submit',function(e){
-    var top=document.getElementById('top-range').value;
-    console.log(top);
-   });
-        
-    </script>
+    
+      <script src="../../js/jquery.js"></script>
     
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <script>
 // In the following example, markers appear when the user clicks on the map.
 // The markers are stored in an array.
 // The user can then click an option to hide, show or delete the markers.
+
 var map;
 var markers = [];
 var coordsLat=[],coordsLong=[],price=[],accomodation=[];
 var inn=0;
+function mouseIn(){
+     $(this).css('color','red')
+    
+}
 
+function mouseOut(){
+     $(this).css('color','grey')
+}
 
 function initialize() {
   var pos = new google.maps.LatLng(18.0104288,-76.741323);
   var mapOptions = {
     zoom: 13,
     center: pos,
+    scrollwheel: false,
     mapTypeId: google.maps.MapTypeId.TERRAIN
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -347,6 +393,7 @@ function initialize() {
         ));
     
   });*/
+
   
 $(document).ready(function(){
     setTimeout(function(){
@@ -354,7 +401,16 @@ $(document).ready(function(){
     setAllMap(map);
      
     },1000)
+    
+    google.maps.event.addListener(map, "click", function(event) {
+    for (var i = 0; i < markers.length; i++ ) {  //I assume you have your infoboxes in some array
+         markers[i].infowindow.close();
+    }
 });
+    
+    
+});
+
   // Adds a marker at the center of the map.
 
 }
@@ -369,16 +425,53 @@ function addMarker(coordsLat,coordsLong,price,accomodation) {
    for(var i=0;i<coordsLat.length;i++)
    {
    
-    var location=new google.maps.LatLng(coordsLat[i],coordsLong[i]);
+    var location=new google.maps.LatLng(Number(coordsLat[i]),Number(coordsLong[i]));
     var marker = new google.maps.Marker({
     position: location,
     map: map,
-    infowindow:new google.maps.InfoWindow({content:"<div> Price: "+price[i]+"</div>"+"Accomodation: "+accomodation[i]})
+    infowindow:new google.maps.InfoWindow({content:"<div><span class='glyphicon glyphicon-heart heart'></span><img class='info-image' src='../images/info-img.jpg'/><div class='info-price'> $"+price[i]+"</div>"+"</div>"+"Accomodation: "+accomodation[i]})
    
       
   });
   
+  google.maps.event.addListener(marker.infowindow, 'domready', function() {
+      /*marker customization*/
+      var iwOuter = $('.gm-style-iw');
+
+   /* The DIV we want to change is above the .gm-style-iw DIV.
+    * So, we use jQuery and create a iwBackground variable,
+    * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+    */
+   var iwBackground = iwOuter.prev();
+
+   // Remove the background shadow DIV
+   iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+   // Remove the white background DIV
+   iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+   iwOuter.parent().parent().css({left: '55px'});
+   iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 85px !important;'});
+
+// Moves the arrow 76px to the left margin 
+iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 85px !important;'});
+
+iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+
+
+    /*marker customization*/
+      
+     
+      $(".heart").on('click',function(){
+         
+        $(this).css('color','red')
+});
+    
+});
+
+  
      markers.push(marker); 
+     
      markers[i].addListener('click',function(){
          this.infowindow.open(map,this);
      })
@@ -432,5 +525,6 @@ function deleteMarkers() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
+    </body>
 </html>
 
