@@ -61,7 +61,7 @@
         					<li><a href="#">Areas</a></li>
        					</ul>
        						<ul class="nav navbar-nav navbar-right">
-        					<li><a href="#">Home</a></li>
+        					<li class="mylikes" id="mylikes"><a href="#">My Likes</a></li>
        					</ul>
 						</li>
 					</ul>

@@ -23,8 +23,8 @@ $servername = '127.0.0.1';
         die("Connection failed: " . $db->connect_error);
         
          } 
-         $x=rand(0,6);
-         $y=rand(8,15);
+         $x=rand(0,3);
+         $y=rand(3,6);
          
        #$sql = "SELECT location,price,single_shared,telephone,uniqueid FROM `flatinfo`";
        $sql = "SELECT location,price,single_shared,telephone,uniqueid FROM `flatinfo` LIMIT $x,$y";
@@ -88,24 +88,57 @@ $servername = '127.0.0.1';
         <!--google connection script-->
         <script>
         
-        var signedIn=false;
+            var signedIn=false;
+            $(".mylikes").on('click',myLikes)
+            
+            function myLikes(){
+                $.ajax({
+                    data:{'signedin':signedIn},
+                    url:'saved.php',
+                    type:'POST',
+                    success:function(response){
+                        if(signedIn==true){
+                            location.href='saved.php';
+                        }
+                        console.log(response);
+                    }
+                    
+                })
+                
+            }
         
             function onSignIn(googleUser) {
                   var profile = googleUser.getBasicProfile();
-                  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                  signedIn=true;
+                 /* console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
                   console.log('Name: ' + profile.getName());
                   console.log('Image URL: ' + profile.getImageUrl());
-                  console.log('Email: ' + profile.getEmail());
+                  console.log('Email: ' + profile.getEmail());*/
                   
                  
-                  /*var id_token = googleUser.getAuthResponse().id_token;
-                  console.log("ID Token: " + id_token);*/
+                  var id_token = googleUser.getAuthResponse().id_token;
+                  console.log("ID Token: " + id_token);
              }
              
+             function mylikes(){
+                 
+                   if(signedIn)
+                   {
+                       signedIn=true;
+                   }
+                   
+                   else
+                   {
+                       signedIn=false;
+                   }
+             }
+             
+             $(".mylikes").on('click',mylikes);
            
              
              function sendToSaved(){
-                 signedIn=true;
+                 
+                 console.log("i signed in here");
                 /* var data={};
                  data["textme"]="textme";
                  
@@ -129,6 +162,8 @@ $servername = '127.0.0.1';
                
                  
              }
+             
+             
              function onSuccess(googleUser) {
                 console.log('Logged in as the: ' + googleUser.getBasicProfile().getName());
                
@@ -254,7 +289,7 @@ $servername = '127.0.0.1';
               function testAPI() {
                
                 FB.api('/me?fields=first_name, last_name', function(response) {
-                    console.log(response,"im meeeeeeee");
+                    console.log(response);
                 /*  console.log('Successful login for: ' + response.first_name);*/
                  // document.getElementById('status').innerHTML =
                    // 'Thanks for logging in, ' + response.first_name + '!';
