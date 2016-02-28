@@ -68,6 +68,7 @@ $servername = '127.0.0.1';
          <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
         <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css"/>
+       
            
 
       
@@ -364,6 +365,7 @@ $servername = '127.0.0.1';
              <script src="../../js/progressbar.min.js"></script>
          <script src="assets/bootstrap/js/bootstrap.min.js"></script>
          <script src="../../js/jquery.anoslide.js"></script>
+          <script type="text/javascript" src="assets/js/jquery.maskedinput.min.js"></script>
          
        
         
@@ -594,6 +596,12 @@ display:none;
     <script>
     $(".se-pre-con").hide();
     
+    $(function($){
+   
+   $("#telephone").mask("(999) 999-9999");
+   
+});
+    
 var map;
 var markers = [];
 var coords={};
@@ -602,9 +610,10 @@ function initialize() {
  var x=0;
   var haightAshbury = new google.maps.LatLng(18.0104288,-76.741323);
   var mapOptions = {
+   styles:[{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}],
     zoom: 13,
     center: haightAshbury,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
@@ -932,7 +941,65 @@ loadContent();
 
 
  
-    </script>
+</script>
+<script type="text/javascript">
+ 
+</script>
+
+  <!--AUTOCOMPLETE SCRIPT-->
+<script>
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('location')),
+      {types: ['geocode']});
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+}
+
+
+// [START region_geolocation]
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+// [END region_geolocation]
+
+</script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5G9JFJu-6F4zbj3POdmAVGDi2mCQ7coE&signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>
        </body>
 </html>
 <?php

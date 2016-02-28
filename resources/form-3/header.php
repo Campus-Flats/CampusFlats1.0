@@ -13,12 +13,39 @@
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css"/>
        <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="materialize/js/materialize.js" type="text/css" />
         <title>..title..</title>
       
    </head> 
        
      
    <body>
+   	<nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo navbar-brand"></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse" ><i class="material-icons mdi-navigation-menu"></i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+ 
+  
+  
+  <script type="text/javascript">
+   
+  	
+  </script>
    	<div class="header container">
     <nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
 			<div class="container-fluid">
